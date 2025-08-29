@@ -44,7 +44,7 @@ if [ ! -d "azurlane" ]; then
 fi
 
 echo "Decompile Azur Lane apk"
-java -jar apktool.jar -q -f d com.bilibili.AzurLane.apk
+java -jar apktool.jar -f d com.bilibili.AzurLane.apk
 
 echo "Copy JMBQ libs"
 cp -r azurlane/. com.bilibili.AzurLane/lib/

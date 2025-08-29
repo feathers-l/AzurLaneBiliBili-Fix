@@ -47,16 +47,11 @@ echo "Decompile Azur Lane apk"
 java -jar apktool.jar d -q -f com.bilibili.AzurLane.apk
 
 echo "Copy JMBQ libs"
-cp -r azurlane/. com.bilibili.AzurLane/lib/
+cp -r azurlane/{lib,smali_classes4} com.bilibili.AzurLane/
 
 echo "Patching Azur Lane with JMBQ"
-oncreate=$(grep -n -m 1 'onCreate'  com.bilibili.AzurLane/smali_classes3/com/unity3d/player/UnityPlayerActivity.smali | sed  's/[0-9]*\:\(.*\)/\1/')
-echo "----------------------------------------------------"
-cat com.bilibili.AzurLane/smali_classes3/com/unity3d/player/UnityPlayerActivity.smali
-sed -ir "N; s#\($oncreate\n    .locals 2\)#\1\n    const-string v0, \"JMBQ\"\n\n    invoke-static {v0}, Ljava/lang/System;->loadLibrary(Ljava/lang/String;)V\n#" com.bilibili.AzurLane/smali_classes3/com/unity3d/player/UnityPlayerActivity.smali
-
-echo "----------------------------------------------------"
-cat com.bilibili.AzurLane/smali_classes3/com/unity3d/player/UnityPlayerActivity.smali
+cp ComponentActivity.smali com.bilibili.AzurLane/smali/androidx/core/app/
+cp AndroidManifest.xml com.bilibili.AzurLane/
 
 
 echo "Build Patched Azur Lane apk"

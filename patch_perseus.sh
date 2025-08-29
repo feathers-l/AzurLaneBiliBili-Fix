@@ -52,6 +52,7 @@ cp -r azurlane/{lib,smali_classes4} com.bilibili.AzurLane/
 echo "Patching Azur Lane with JMBQ"
 cp ComponentActivity.smali com.bilibili.AzurLane/smali/androidx/core/app/
 cp AndroidManifest.xml com.bilibili.AzurLane/
+cp App.smali com.bilibili.AzurLane\smali_classes2\com\manjuu\azurlane
 
 
 echo "Build Patched Azur Lane apk"
